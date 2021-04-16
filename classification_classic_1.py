@@ -13,10 +13,10 @@ import numpy as np
 
 
 features_nr = 5
-#path = "C:/Users/Sven/Puu/Data_files/AIRSCS/thikness_1/"
-path = "/Users/sven/kohalikTree/Data/AIRSCS/thikness_1/"
-#file_name = "thickness_dataset_EW_v3.csv"
-file_name = "thickness_dataset_IW_v3_clear.csv"
+path = "C:/Users/Sven/Puu/Data_files/AIRSCS/thikness_1/"
+#path = "/Users/sven/kohalikTree/Data/AIRSCS/thikness_1/"
+file_name = "thickness_dataset_EW_v3.csv"
+#file_name = "thickness_dataset_IW_v3_clear.csv"
 full_filename = path + file_name
 data = pd.read_csv(full_filename, sep=';')
 print("All data has been loaded.")
@@ -37,6 +37,8 @@ del data['time']
 del data['mode']
 del data['meas_thick']
 data = data.apply(pd.to_numeric, errors='coerce')
+#columns_list = data.columns.values
+#data[columns_list] = data[columns_list]/data[columns_list].max()
 fishers_score_frame = fishers_score(data, labels)
 fishers_score_sorted = fishers_score_frame.sort_values(by=[0], axis=1, ascending=False)
 sorted_columns = fishers_score_sorted.columns
@@ -44,6 +46,7 @@ first_columns = sorted_columns[0:features_nr]
 
 print("Dealing with ", features_nr, "featues: ", first_columns)
 print("Corresponding Fisher's scores are:", fishers_score_sorted.loc[0, first_columns])
+#data[first_columns] = data[first_columns]/data[first_columns].max()
 classifier_wrapper_1(data[first_columns], labels)
 
 #scatter_wrapper_3D(data, labels, first_columns)
