@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from correlation_analysis import correlation_analysis
 from regression_module import regression_wrapper
+from conversion_module import format_time_diff
 
 features_nr = 12
 
@@ -28,13 +29,17 @@ print("it contains ", rows, " rows  and", cols, " columns")
 #dependent_variable = data['meas_thick']
 dependent_variable = data['thick_class']
 
+# convert time difference
+data['time_diff'] = data['time_diff'].map(lambda a: format_time_diff(a))
+print('Time difference conversion has been performed.')
+
 # We have to discuss the meaning of this columns with Sander
 del data['thick_class']
 del data['segVal']
 del data['time']
 del data['mode']
 del data['meas_time']
-del data['time_diff']
+#del data['time_diff']
 del data['meas_thick']
 del data['meas_lon']
 del data['meas_lat']
@@ -75,3 +80,7 @@ plt.show()
 
 
 print("That's all folks!!!")
+
+
+# encorporrate time into modeling.
+# investigate if position of the images and time play the role in modeing precision. 
