@@ -15,4 +15,15 @@ def format_time_diff(time_diff):
     time_diff_hours = time_diff.hour + time_diff_minutes / 60
     days_diff = days_diff + time_diff_hours / 24
 
-    return time_diff_minutes # possible returns  days_diff, time_diff_hours, time_diff_minutes, time_diff_seconds
+    return time_diff_hours # possible returns  days_diff, time_diff_hours, time_diff_minutes, time_diff_seconds
+
+
+def get_date(date_time):
+    date = date_time.split(' ')
+    date = datetime.datetime.strptime(date[0], '%Y-%m-%d')
+    year = date.year
+    month = date.month
+    day = date.day + month * 30
+    # on this stage no point to extract time since it iss always 12:00:00 + 00:00
+    # possible returns year, month, day
+    return  day

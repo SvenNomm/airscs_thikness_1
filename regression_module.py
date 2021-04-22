@@ -17,9 +17,9 @@ from sklearn.model_selection import cross_val_score
 from math import sqrt
 
 
-def regression_wrapper(data, dep_var):
-    models = ['DecisionTreeRegressor', 'KNeighborsRegressor',
-                   'ElasticNet', 'Lasso', 'Ridge', 'LinearRegression']
+def regression_wrapper(data, dep_var, features):
+    models = ['DecisionTreeRegressor',
+                   'ElasticNet', 'Lasso', 'Ridge', 'LinearRegression', 'KNeighborsRegressor']
 
     #X_train, X_test, y_train, y_test = train_test_split(data, dep_var, test_size=0.30, random_state=40)
 
@@ -36,11 +36,11 @@ def regression_wrapper(data, dep_var):
             else:
                 model_name = eval(model + "()")
 
-            model_name.fit(X_train, y_train)
-            predict= model_name.predict(X_test)
-            predict_train = model_name.predict(X_train)
+            model_name.fit(X_train[features], y_train)
+            predict= model_name.predict(X_test[features])
+            predict_train = model_name.predict(X_train[features])
             print("Model: ", model_name, " mean square error:", np.sqrt(mean_squared_error(y_test, predict)))
             print("Model: ", model_name, " mean square error:", np.sqrt(mean_squared_error(y_train, predict_train)))
             print("Model: ", model_name, " determination coefficients: ", r2_score(y_train, predict_train))
 
-        #return model_name
+    return X_test, X_train, y_test,  y_train, predict, predict_train
