@@ -23,5 +23,3 @@ def correlation_analysis(data, dependent_var):
             collinearity_frame.loc[column_name, column] = r[0, 1]
 
     return collinearity_frame, correlations_frame
-
-

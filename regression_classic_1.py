@@ -9,6 +9,7 @@ from correlation_analysis import correlation_analysis
 from regression_module import regression_wrapper
 from conversion_module import format_time_diff
 from conversion_module import get_date
+from offline_plots_test import offline_plots_test_1
 
 features_nr = 80
 
@@ -69,6 +70,7 @@ print("Corresponding correlation coefficients  scores are:", correlations_frame_
 #data_to_process = pd.concat([data[first_columns], data['time_diff'], data['meas_time'], data['meas_lat']], axis=1)
 X_test, X_train, y_test,  y_train, predict, predict_train = regression_wrapper(data, dependent_variable, first_columns)
 
+offline_plots_test_1(X_test, predict, y_test)
 
 # find max and mn values
 x_max = data[first_columns[0]].max()
