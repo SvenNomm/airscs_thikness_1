@@ -70,7 +70,7 @@ print("Corresponding correlation coefficients  scores are:", correlations_frame_
 #data_to_process = pd.concat([data[first_columns], data['time_diff'], data['meas_time'], data['meas_lat']], axis=1)
 X_test, X_train, y_test,  y_train, predict, predict_train = regression_wrapper(data, dependent_variable, first_columns)
 
-offline_plots_test_1(X_test, predict, y_test)
+offline_plots_test_1(X_test, predict_train, y_train)
 
 # find max and mn values
 x_max = data[first_columns[0]].max()

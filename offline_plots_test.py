@@ -54,7 +54,8 @@ def offline_plots_test_1(data, predicted, y):
         ),
 
     )
-
+    trace.update(dict(x=['A', 'B', 'C'], y=['Cat', 'Dog', 'Bird'], z = ['100', '200', '300']))
     fig = go.Figure(data=data, layout=layout)
+
     fig.show()
     #iplot(fig)
